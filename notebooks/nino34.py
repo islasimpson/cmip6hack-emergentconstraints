@@ -33,7 +33,7 @@ def nino34(ds,var,seas):
     # -- spatial average in nino34 region
     nino_raw = wa(ds,'ts',minlat,maxlat,minlon,maxlon)
 
-    # -- compute anomalies
+    # -- compute anomalies (I think this can be made much more efficient/elegant)
     if seas == 'monthly':
         climo = xr.DataArray(np.random.rand(12, 1))
         for m in range(0,12):
