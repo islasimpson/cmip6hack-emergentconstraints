@@ -3,7 +3,8 @@ import numpy as np
 
 def wgt_areaave(ds,var,minlat,maxlat,minlon,maxlon):
     
-    """ calculates area-weighted average in rectangular region given by lat/lon on regular grid
+    """
+    calculates area-weighted average in rectangular region given by lat/lon on regular grid
     Args: ds (xarray.Dataset): dataset (needs to be 3-d, e.g. [time x lat x lon])
           var (str): variable to use
           minlat: -90..90
