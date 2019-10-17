@@ -13,7 +13,7 @@ def wgt_areaave(ds,var,minlat,maxlat,minlon,maxlon):
           maxlon: 0..360
     Comment: cannot yet handle region crossing 0°...
     Import: from wgt_areaave import wgt_areaave as wa
-    Usage: ts = wa(da,minlat,maxlat,minlon,maxlon)
+    Usage example: ts = wa(ds,'ts',minlat,maxlat,minlon,maxlon)
     """
     
     # -- subsetting the data and latitudes
