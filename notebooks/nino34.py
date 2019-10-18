@@ -15,7 +15,7 @@ def nino34(ds,var,seas):
     """
     calculates Nino 3.4 from monthly mean gridded data
     Args: ds (xarray.Dataset): dataset (needs to be 3-d, e.g. [time x lat x lon])
-          var (str): variable to use (easiest to use 'ts' in CMOR nomenclature)
+          var (str): variable to use (for example 'ts' in CMOR nomenclature = SST over ocean)
           seas (str): season to calculate Nino 3.4 for
                       (options: 'monthly'-->no seasonal average, returns
                       monthly mean anomalies; 'DJF'; 'MAM'; JJA' etc)
