@@ -21,11 +21,11 @@ def wgt_areaave(ds,var,minlat,maxlat,minlon,maxlon):
     lats = ds.lat.where((minlat < ds.lat) & (ds.lat < maxlat), drop=True)
     # -- creating latitude weights
     lat_weights = np.cos(np.deg2rad(lats))
-    # -- broadcasting weights to dimensions of data
-    tmp1,tmp2 = xr.broadcast(lat_weights,subset,exclude=['lat'])
-    weights = tmp1.transpose('time','lat','lon')
-    # -- normalize weights
-    weights = weights/np.sum(np.sum(weights,axis=1),axis=1)
+    
+    # -- broadcasting weights to dimensions of data 
+    weights = xr.broadcast(lat_weights,subset,exclude=['lat'])
+    # -- normalize weights (divide by sum of all lat/lon weights within each dim)
+    norm_weights = weights[0]/weights[0].sum(dim=("lat", "lon"))
     # -- apply weights and sum up
-    ts = np.sum(np.sum((subset*weights),axis=1),axis=1)
+    ts = (subset*norm_weights).sum(dim=("lat", "lon"))
     return (ts)
