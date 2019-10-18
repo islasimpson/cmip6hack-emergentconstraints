@@ -15,12 +15,12 @@ def nino34(ds,var,seas):
     """
     calculates Nino 3.4 from monthly mean gridded data
     Args: ds (xarray.Dataset): dataset (needs to be 3-d, e.g. [time x lat x lon])
-          var (str): variable to use
+          var (str): variable to use (easiest to use 'ts' in CMOR nomenclature)
           seas (str): season to calculate Nino 3.4 for
                       (options: 'monthly'-->no seasonal average, returns
-                      monthly mean anomalies; 'DJF'; 'MAM'; JJA'; 'SON')
+                      monthly mean anomalies; 'DJF'; 'MAM'; JJA' etc)
     Comment: currently, the time coordinates for the 'monthly' case and 'DJF', 'MAM', etc cases
-            are not the same when they come out at the end, need to revisit
+            are not the same format when they come out at the end ('time' vs 'year'), need to revisit.
     Import: from nino34 import nino34
     Usage example: nino = nino34(da,'ts','DJF')
     """
@@ -31,7 +31,7 @@ def nino34(ds,var,seas):
     maxlon = -120+360
     
     # -- spatial average in nino34 region
-    nino_raw = wa(ds,'ts',minlat,maxlat,minlon,maxlon)
+    nino_raw = wa(ds,var,minlat,maxlat,minlon,maxlon)
 
     # -- compute anomalies (I think this can be made much more efficient/elegant)
     if seas == 'monthly':
